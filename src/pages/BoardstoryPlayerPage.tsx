@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useBoardstories } from "../hooks/useBoardstories";
 import { BoardView } from "../components/boardstory/BoardView";
@@ -10,6 +10,19 @@ export function BoardstoryPlayerPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const story = getById(id ?? "");
+  
+  useEffect(() => {
+    if (!story) return;
+    const boardCount = story.boards.length;
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === 'ArrowRight')
+        setCurrentIndex((i) => Math.min(i + 1, boardCount - 1));
+      if (e.key === 'ArrowLeft')
+        setCurrentIndex((i) => Math.max(i - 1, 0));
+    }
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [story?.boards.length]);
 
   if (!story) {
     return (
