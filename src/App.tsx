@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { VideoPlayerPage } from "./pages/VideoPlayerPage";
+import { BoardstoryPlayerPage } from "./pages/BoardstoryPlayerPage";
 
 function App() {
   return (
@@ -8,14 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/player" element={<VideoPlayerPage />} />
-        <Route
-          path="/boardstory/:id"
-          element={
-            <div className="text-white p-8">
-              Boardstory Player (kommt in Step 4)
-            </div>
-          }
-        />
+        <Route path="/boardstory/:id" element={<BoardstoryPlayerPage />} />
         <Route
           path="/editor"
           element={
