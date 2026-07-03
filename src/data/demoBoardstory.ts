@@ -9,6 +9,7 @@ export const demoBoardstory: Boardstory = {
     {
       id: "board-1",
       imageUrl: "https://picsum.photos/seed/raupe1/800/450",
+      audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       textSections: [
         { id: "ts-1", content: "Es war einmal eine kleine Raupe." },
         { id: "ts-2", content: "Sie lebte auf einem großen grünen Blatt." },
@@ -33,5 +34,6 @@ export const demoBoardstory: Boardstory = {
         },
       ],
     },
+
   ],
 };

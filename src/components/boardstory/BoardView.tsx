@@ -1,6 +1,7 @@
 import type { Board } from "../../types/boardstory";
 import { TextReveal } from "./TextReveal";
 import { useState } from "react";
+import { BoardAudio } from "./BoardAudio";
 
 interface Props {
   board: Board;
@@ -16,6 +17,7 @@ export function BoardView({ board }: Props) {
         alt="Board Bild"
         className="w-full rounded-lg object-cover"
       />
+      {board.audioUrl && <BoardAudio audioUrl={board.audioUrl} />}
       <TextReveal
         sections={board.textSections}
         visibleCount={visibleCount}
