@@ -2,7 +2,7 @@
 
 ## Ziel
 
-Erweiterung des bestehenden Vidstack-Videoplayers um einen Boardstory-Player und einen Basis-Editor — als Übungsprojekt für die Onilo-Bewerbung (Vidstack, React, TypeScript).
+Erweiterung des bestehenden Vidstack-Videoplayers um einen Boardstory-Player und einen Basis-Editor — Übungsprojekt zur Vertiefung von Vidstack, React und TypeScript.
 
 ## Architektur-Entscheidungen
 
@@ -13,7 +13,7 @@ Erweiterung des bestehenden Vidstack-Videoplayers um einen Boardstory-Player und
 | Datenspeicherung | localStorage + Demo-Boardstory als Startzustand | Kein Backend nötig, Elixir-Backend später andockbar |
 | Bilder | URLs (Textfeld im Editor) | Kein File-Upload-Aufwand, sofort nutzbar |
 | Audio pro Board | Vidstack `MediaPlayer` mit Audio-Source | Konsistent mit Stack, zeigt Vidstack-Kompetenz |
-| Textanzeige | Sukzessiv — abschnittsweise per Klick/Pfeil | Kern-Feature von Onilo-Boardstories |
+| Textanzeige | Sukzessiv — abschnittsweise per Klick/Pfeil | Kern-Feature des Boardstory-Formats |
 | Editor-Scope | Basis: Boardstory + Boards CRUD, Felder pro Board | Solider, fertiggestellter Umfang > halbfertiger Overkill |
 
 ## Datenmodell

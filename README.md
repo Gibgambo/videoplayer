@@ -1,75 +1,66 @@
-# React + TypeScript + Vite
+# Videoplayer & Boardstory
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React/TypeScript-Showcase-Projekt: ein individuell gestalteter Video-Player auf Basis von [Vidstack](https://vidstack.io/) sowie ein "Boardstory"-Feature — eine Bilderbuch-artige Slideshow mit Audio, abschnittsweiser Textanzeige und einem eigenen Editor.
 
-Currently, two official plugins are available:
+![Screenshot](src/assets/hero.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Video Player** — eigener Vidstack-Player mit selbstgebauten Controls (Play/Pause, Seek, Lautstärke, Zeit-Anzeige, Fullscreen) statt der Vidstack-Standard-UI.
+- **Boardstory Player** — Slideshow aus einzelnen "Boards" (Bild + Audio + Textabschnitte), die per Klick/Pfeiltaste durchgeblättert wird; Text wird sukzessive eingeblendet, Audio läuft synchron über Vidstack.
+- **Boardstory Editor** — CRUD-Oberfläche zum Anlegen und Bearbeiten von Boardstories und ihren Boards (Bild-URL, Audio-URL, Textabschnitte).
+- **Kein Backend nötig** — Boardstories werden per `localStorage` persistiert (siehe `src/hooks/useBoardstories.ts`), inklusive einer Demo-Story als Startzustand.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech-Stack
 
-## Expanding the ESLint configuration
+- React 19 + TypeScript
+- Vite 8
+- [@vidstack/react](https://vidstack.io/) für Video- und Audio-Wiedergabe
+- react-router-dom v7
+- Tailwind CSS 4
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Setup
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Die App läuft danach unter der von Vite ausgegebenen lokalen Adresse (üblicherweise `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Weitere Skripte
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Befehl | Beschreibung |
+|---|---|
+| `npm run dev` | Startet den Dev-Server mit Hot Reload |
+| `npm run build` | Typecheck (`tsc -b`) + Produktions-Build |
+| `npm run preview` | Zeigt den Produktions-Build lokal an |
+| `npm run lint` | Führt ESLint über das Projekt aus |
+
+## Struktur
 
 ```
+src/
+├── components/
+│   ├── controls/      # Wiederverwendbare Video-Player-Controls
+│   ├── boardstory/     # Boardstory-Player-Komponenten (View, Controls, Audio, TextReveal)
+│   └── editor/         # Boardstory-Editor
+├── pages/              # Routen-Komponenten (Home, Player, Boardstory, Editor)
+├── hooks/              # useBoardstories (localStorage-Persistenz)
+├── types/              # Domänentypen (Boardstory, Board, TextSection)
+└── data/               # Demo-Boardstory als Startdaten
+```
+
+### Routen
+
+| Pfad | Seite |
+|---|---|
+| `/` | Übersicht aller Boardstories |
+| `/player` | Video-Player |
+| `/boardstory/:id` | Boardstory-Player |
+| `/editor` | Liste/Anlage von Boardstories |
+| `/editor/:id` | Boardstory bearbeiten |
+
+## Hintergrund
+
+Die ursprünglichen Design-Entscheidungen sind in `docs/implementation/` dokumentiert (Videoplayer- und Boardstory-Feature getrennt beschrieben).
