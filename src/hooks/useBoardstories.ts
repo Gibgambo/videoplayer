@@ -6,8 +6,14 @@ const STORAGE_KEY = "boardstories";
 
 function loadFromStorage(): Boardstory[] {
   const raw = localStorage.getItem(STORAGE_KEY);
-  if (raw) return JSON.parse(raw);
-  return [demoBoardstory];
+  if (!raw) return [demoBoardstory];
+
+  try {
+    return JSON.parse(raw);
+  } catch {
+    console.warn("Corrupted boardstories in localStorage, falling back to demo data.");
+    return [demoBoardstory];
+  }
 }
 
 function saveToStorage(stories: Boardstory[]) {
