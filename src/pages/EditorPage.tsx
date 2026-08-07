@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router";
 import { useBoardstories } from "../hooks/useBoardstories";
 import type { Boardstory } from "../types/boardstory";
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router";
 import { useBoardstories } from "../hooks/useBoardstories";
 import { BoardView } from "../components/boardstory/BoardView";
 import { BoardstoryControls } from "../components/boardstory/BoardstoryControls";

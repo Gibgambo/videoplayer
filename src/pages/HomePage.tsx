@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useBoardstories } from "../hooks/useBoardstories";
 
 export function HomePage() {

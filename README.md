@@ -16,7 +16,7 @@ React/TypeScript-Showcase-Projekt: ein individuell gestalteter Video-Player auf 
 - React 19 + TypeScript
 - Vite 8
 - [@vidstack/react](https://vidstack.io/) für Video- und Audio-Wiedergabe
-- react-router-dom v7
+- react-router v8
 - Tailwind CSS 4
 
 ## Setup

@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router";
 import { useBoardstories } from "../hooks/useBoardstories";
 import { BoardEditor } from "../components/editor/BoardEditor";
 import type { Board, Boardstory } from "../types/boardstory";
