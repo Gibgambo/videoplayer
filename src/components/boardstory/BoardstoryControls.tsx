@@ -1,4 +1,8 @@
+import { useState } from "react";
+import type { Board } from "../../types/boardstory";
+
 interface Props {
+  board: Board;
   currentIndex: number;
   total: number;
   onPrev: () => void;
@@ -6,6 +10,7 @@ interface Props {
 }
 
 export function BoardstoryControls({
+  board,
   currentIndex,
   total,
   onPrev,
@@ -23,6 +28,7 @@ export function BoardstoryControls({
       <span className="text-white/60 text-sm">
         {currentIndex + 1} / {total}
       </span>
+      <BoardLocalActions key={board.id} />
       <button
         onClick={onNext}
         disabled={currentIndex === total - 1}
@@ -31,5 +37,20 @@ export function BoardstoryControls({
         Weiter →
       </button>
     </div>
+  );
+}
+
+function BoardLocalActions() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <button
+      onClick={() => setIsExpanded((open) => !open)}
+      aria-expanded={isExpanded}
+      aria-label="Weitere Optionen"
+      className="sr-only"
+    >
+      ⋯
+    </button>
   );
 }
